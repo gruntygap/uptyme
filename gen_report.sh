@@ -12,10 +12,10 @@ internet_up_count=0
 internet_down_count=0
 
 # Read the log file and count the number of "up" and "down" occurrences
-router_up_count=$(grep "$month.*$year.*Router is up" $log_file | wc -l)
-router_down_count=$(grep "$month.*$year.*Router is down" $log_file | wc -l)
-internet_up_count=$(grep "$month.*$year.*Network is up" $log_file | wc -l)
-internet_down_count=$(grep "$month.*$year.*Network is down" $log_file | wc -l)
+router_up_count=$(grep -a "$month.*$year.*Router is up" $log_file | wc -l)
+router_down_count=$(grep -a "$month.*$year.*Router is down" $log_file | wc -l)
+internet_up_count=$(grep -a "$month.*$year.*Network is up" $log_file | wc -l)
+internet_down_count=$(grep -a "$month.*$year.*Network is down" $log_file | wc -l)
 
 # Calculate the uptime percentage
 router_uptime=$(echo "scale=2; $router_up_count / ($router_up_count + $router_down_count) * 100" | bc)
